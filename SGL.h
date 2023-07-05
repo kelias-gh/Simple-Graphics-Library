@@ -30,23 +30,47 @@ typedef struct image
   u32 *pixels;
 }image;
 
-typedef enum keys
+typedef enum KEYS
 {
-  KEY_N = 0,
+  SGL_A = 0,
+  SGL_B,
+  SGL_C,
+  SGL_D,
+  SGL_E,
+  SGL_F,
+  SGL_G,
+  SGL_H,
+  SGL_I,
+  SGL_J,
+  SGL_K,
+  SGL_L,
+  SGL_M,
+  SGL_N,
+  SGL_O,
+  SGL_P,
+  SGL_Q,
+  SGL_R,
+  SGL_S,
+  SGL_T,
+  SGL_U,
+  SGL_V,
+  SGL_W,
+  SGL_X,
+  SGL_Y,
+  SGL_Z,
+  SGL_UP_ARROW,
+  SGL_LEFT_ARROW,
+  SGL_RIGHT_ARROW,
+  SGL_DOWN_ARROW,
+  SGL_LMB,
+  SGL_RMB,
+  SGL_MMB,
+  SGL_TAB,
+  SGL_BACKSPACE,
+  SGL_SHIFT,
+  SGL_CTRL,
   KEY_ACTION_COUNT
-}keys;
-
-typedef enum mouse
-{
-  MOUSE_L = 0,
-  MOUSE_R,
-  MOUSE_M,
-  MOUSE_ACTION_COUNT
-}mouse;
-
-extern bool mouse_is_down[MOUSE_ACTION_COUNT];
-
-extern bool mouse_is_up[MOUSE_ACTION_COUNT];
+} KEYS;
 
 extern bool key_is_down[KEY_ACTION_COUNT];
 

@@ -25,15 +25,13 @@ u32 main()
     present(img, WHITE);
     receive_msg(msg, &is_running);
 
-    SHORT lbKeyState = GetAsyncKeyState(VK_LBUTTON);
-
     draw_cubic_bezier(img, control_points_x, control_points_y, 4, RED);
     for (u32 i = 0; i < 4; ++i)
     {
       draw_circle(img, true, 10, control_points_x[i], control_points_y[i], RED, RED);
       clicked_circle_button[i] = button_circle(10, control_points_x[i], control_points_y[i]);
 
-      if (clicked_circle_button[i] && (1 << 15) & lbKeyState)
+      if (clicked_circle_button[i] && key_is_down[SGL_LMB])
       {
         control_points_x[i] = mouse_pos.x;
         control_points_y[i] = mouse_pos.y;

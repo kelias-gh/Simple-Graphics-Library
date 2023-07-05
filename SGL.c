@@ -8,11 +8,7 @@
 
 ivec2 mouse_pos = {0, 0};
 
-bool mouse_is_down[MOUSE_ACTION_COUNT] = {};
-
-bool mouse_is_up[MOUSE_ACTION_COUNT] = {};
-
-bool key_is_down[KEY_ACTION_COUNT] = {};
+bool key_is_down[KEY_ACTION_COUNT] = {false};
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
@@ -376,9 +372,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
   switch (uMsg)
   {
-  case WM_DESTROY:
-    PostQuitMessage(0);
-    return 0;
   case WM_MOUSEMOVE:
     POINT point;
     GetCursorPos(&point);
@@ -387,54 +380,101 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     mouse_pos.x = point.x;
     mouse_pos.y = point.y;
     break;
-
+  case WM_KEYDOWN:
   case WM_KEYUP:
   {
     bool isDown = (uMsg == WM_KEYDOWN);
-    if (wParam == 'N')
-    {
-      key_is_down[KEY_N] = isDown;
-    }
+    if (wParam == 'A')
+      key_is_down[SGL_A] = isDown;
+    else if (wParam == 'B')
+      key_is_down[SGL_B] = isDown;
+    else if (wParam == 'C')
+      key_is_down[SGL_C] = isDown;
+    else if (wParam == 'D')
+      key_is_down[SGL_D] = isDown;
+    else if (wParam == 'E')
+      key_is_down[SGL_E] = isDown;
+    else if (wParam == 'F')
+      key_is_down[SGL_F] = isDown;
+    else if (wParam == 'G')
+      key_is_down[SGL_G] = isDown;
+    else if (wParam == 'H')
+      key_is_down[SGL_H] = isDown;
+    else if (wParam == 'I')
+      key_is_down[SGL_I] = isDown;
+    else if (wParam == 'J')
+      key_is_down[SGL_J] = isDown;
+    else if (wParam == 'K')
+      key_is_down[SGL_K] = isDown;
+    else if (wParam == 'L')
+      key_is_down[SGL_L] = isDown;
+    else if (wParam == 'M')
+      key_is_down[SGL_M] = isDown;
+    else if (wParam == 'N')
+      key_is_down[SGL_N] = isDown;
+    else if (wParam == 'O')
+      key_is_down[SGL_O] = isDown;
+    else if (wParam == 'P')
+      key_is_down[SGL_P] = isDown;
+    else if (wParam == 'Q')
+      key_is_down[SGL_Q] = isDown;
+    else if (wParam == 'R')
+      key_is_down[SGL_R] = isDown;
+    else if (wParam == 'S')
+      key_is_down[SGL_S] = isDown;
+    else if (wParam == 'T')
+      key_is_down[SGL_T] = isDown;
+    else if (wParam == 'U')
+      key_is_down[SGL_U] = isDown;
+    else if (wParam == 'V')
+      key_is_down[SGL_V] = isDown;
+    else if (wParam == 'W')
+      key_is_down[SGL_W] = isDown;
+    else if (wParam == 'X')
+      key_is_down[SGL_X] = isDown;
+    else if (wParam == 'Y')
+      key_is_down[SGL_Y] = isDown;
+    else if (wParam == 'Z')
+      key_is_down[SGL_Z] = isDown;
+    else if (wParam == VK_UP)
+      key_is_down[SGL_UP_ARROW] = isDown;
+    else if (wParam == VK_LEFT)
+      key_is_down[SGL_LEFT_ARROW] = isDown;
+    else if (wParam == VK_DOWN)
+      key_is_down[SGL_DOWN_ARROW] = isDown;
+    else if (wParam == VK_RIGHT)
+      key_is_down[SGL_RIGHT_ARROW] = isDown;
+    else if (wParam == VK_TAB)
+      key_is_down[SGL_TAB] = isDown;
+    else if (wParam == VK_BACK)
+      key_is_down[SGL_BACKSPACE] = isDown;
+    else if (wParam == VK_SHIFT)
+      key_is_down[SGL_SHIFT] = isDown;
+    else if (wParam == VK_CONTROL)
+      key_is_down[SGL_CTRL] = isDown;
     break;
   }
-
-  case WM_LBUTTONDOWN:
-  {
-    bool isDown = (uMsg == WM_LBUTTONDOWN);
-    mouse_is_down[MOUSE_L] = isDown;
+    case WM_LBUTTONDOWN:
+    key_is_down[SGL_LMB] = true;
     break;
-  }
-
-  case WM_RBUTTONDOWN:
-  {
-    bool isDown = (uMsg == WM_RBUTTONDOWN);
-    mouse_is_down[MOUSE_R] = isDown;
-    break;
-  }
-  case WM_MBUTTONDOWN:
-  {
-    bool isDown = (uMsg == WM_MBUTTONDOWN);
-    mouse_is_down[MOUSE_M] = isDown;
-    break;
-  }
-
   case WM_LBUTTONUP:
-  {
-    bool isUp = (uMsg == WM_LBUTTONUP);
-    mouse_is_up[MOUSE_L] = isUp;
+    key_is_down[SGL_LMB] = false;
     break;
-  }
-
+  case WM_RBUTTONDOWN:
+    key_is_down[SGL_RMB] = true;
+    break;
   case WM_RBUTTONUP:
-  {
-    bool isUp = (uMsg == WM_RBUTTONUP);
-    mouse_is_up[MOUSE_R] = isUp;
+    key_is_down[SGL_RMB] = false;
     break;
-  }
+  case WM_MBUTTONDOWN:
+    key_is_down[SGL_MMB] = true;
+    break;
   case WM_MBUTTONUP:
+    key_is_down[SGL_MMB] = false;
+    break;
+  case WM_DESTROY:
   {
-    bool isUp = (uMsg == WM_MBUTTONUP);
-    mouse_is_up[MOUSE_M] = isUp;
+    PostQuitMessage(0);
     break;
   }
   }
