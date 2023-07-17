@@ -6,4 +6,4 @@ Simple Graphics Library
 
 git clone https://github.com/kelias-gh/Simple-Graphics-Library.git
 
-make all
+make
